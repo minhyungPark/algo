@@ -3,10 +3,8 @@ package com.ssafy.divide;
 import java.util.Arrays;
 
 public class QuickSortTest {
-
 	
 	public static void quickSort(int[] list,int begin,int end) {
-		
 		if(begin<end) {
 			//1. 피봇 위치 확정
 			int pivot=fixPivot(list,begin,end);
