@@ -20,34 +20,22 @@ public class Main5373 {
 		int N = sc.nextInt();
 		for(int n=0;n<N;++n) {
 			char[] dir = sc.next().toCharArray();
-			switch (dir[0]) {
-			case 'U':
-				if(dir[1]=='+')plusRotate(up,back[0],right[0],front[0],left[0]);
-				else if(dir[1]=='-')minusRotate(up,back[0],right[0],front[0],left[0]);
-				break;
-			case 'D':
-				if(dir[1]=='+')plusRotate(down,front[2],right[2],back[2],left[2]);
-				else if(dir[1]=='-')minusRotate(up,front[2],right[2],back[2],left[2]);
-				break;
-			case 'F':
-				if(dir[1]=='+')plusRotate(front,up[2],right,down,left);
-				else if(dir[1]=='-')minusRotate(front,up,right,down,left);
-				break;
-			case 'B':
-				if(dir[1]=='+')plusRotate(back,up,left,down,right);
-				else if(dir[1]=='-')minusRotate(back,up,left,down,right);
-				break;
-			case 'L':
-				if(dir[1]=='+')plusRotate(left,up,front,down,back);
-				else if(dir[1]=='-')minusRotate(left,up,front,down,back);
-				break;
-			case 'R':
-				if(dir[1]=='+')plusRotate(right,up,back,down,front);
-				else if(dir[1]=='-')minusRotate(right,up,back,down,front);
-				break;
-			default:
-				break;
-			}
+			/*
+			 * switch (dir[0]) { case 'U':
+			 * if(dir[1]=='+')plusRotate(up,back[0],right[0],front[0],left[0]); else
+			 * if(dir[1]=='-')minusRotate(up,back[0],right[0],front[0],left[0]); break; case
+			 * 'D': if(dir[1]=='+')plusRotate(down,front[2],right[2],back[2],left[2]); else
+			 * if(dir[1]=='-')minusRotate(up,front[2],right[2],back[2],left[2]); break; case
+			 * 'F': if(dir[1]=='+')plusRotate(front,up[2],right,down,left); else
+			 * if(dir[1]=='-')minusRotate(front,up,right,down,left); break; case 'B':
+			 * if(dir[1]=='+')plusRotate(back,up,left,down,right); else
+			 * if(dir[1]=='-')minusRotate(back,up,left,down,right); break; case 'L':
+			 * if(dir[1]=='+')plusRotate(left,up,front,down,back); else
+			 * if(dir[1]=='-')minusRotate(left,up,front,down,back); break; case 'R':
+			 * if(dir[1]=='+')plusRotate(right,up,back,down,front); else
+			 * if(dir[1]=='-')minusRotate(right,up,back,down,front); break; default: break;
+			 * }
+			 */
 		}
 		for (char[] cs : up) {
 			for (char c : cs) {
@@ -90,7 +78,7 @@ public class Main5373 {
 		d=tem;
 	}
 
-	private static void plusRotate(char[][] me, char[]a, char[] b, char[] c, char[] d) {
+	private static void plusRotate(char[][] me, char[] up, char[][] back, char[][] down, char[][] front) {
 		char temp = me[0][0];
 		me[0][0] = me[1][0];
 		me[1][0] = me[2][0];
@@ -101,11 +89,11 @@ public class Main5373 {
 		me[0][2] = me[0][1];
 		me[0][1] = temp;
 		
-		char[]tem = b;
-		b = a;
-		a = d;
-		d = c;
-		c = tem;
+//		char[]tem = back;
+//		back = up;
+//		up = front;
+//		front = down;
+//		down = tem;
 	}
 
 }
