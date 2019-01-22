@@ -39,7 +39,8 @@ public class QuickSortTest {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] list = {69,10,30,2,16,8,31,22};
+//		int[] list = {69,10,30,2,16,8,31,22};
+		int[] list = {5,4,3,2,1,8,31,22};
 		System.out.println(Arrays.toString(list));
 		quickSort(list,0,list.length-1);
 		System.out.println(Arrays.toString(list));
