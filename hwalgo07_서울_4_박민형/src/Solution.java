@@ -12,53 +12,36 @@ public class Solution {
 		Node(int data){
 			this.data = data;
 		}
-		Node(int data,Node next){
-			this.data = data;
-			this.next = next;
-		}
 	}
 	private static class Linked{
 		Node head;
+		Node tail;
 		public Linked() {}
-		public Node getLastNode() {
-			Node currNode = head;
-			if(currNode != null) {
-				while(currNode.next!=null) {
+		public void addLastNode(int data) {
+			Node newNode = new Node(data);
+			if(tail == null) {
+				head = newNode;
+				tail = newNode;
+			}else {
+				tail.next = newNode;
+				tail = newNode;
+			}
+		}
+		public static void linkLinked(Linked origin,int index,Linked list) {
+			if(index == 0) {
+				Node temp = origin.head;
+				origin.head = list.head;
+				list.tail.next = temp;
+			}else {
+				Node currNode = origin.head;
+				for(int i=1;i<index;++i) {
 					currNode = currNode.next;
 				}
-				return currNode;
+				Node temp = currNode.next;
+				currNode.next = list.head;
+				list.tail.next = temp;
 			}
-			return null;
-		}
-		public void addLastNode(int data) {
-			Node lastNode = getLastNode();
-			Node newNode = new Node(data);
 			
-			if(lastNode == null) {
-				head = newNode;
-			}else {
-				lastNode.next = newNode;
-			}
-		}
-		public void addFirstNode(int data) {
-			Node newNode = new Node(data,head);
-			head = newNode;
-		}
-		public void insertAfterNode(int index,int data) {
-			if(index == 0) {
-				addFirstNode(data);
-				return;
-			}
-			Node currNode = head;
-			Node newNode = new Node(data);
-			int i=1;
-			while(i<index) {
-				currNode = currNode.next;
-				++i;
-			}
-			Node temp = currNode.next;
-			currNode.next = newNode;
-			newNode.next = temp;
 		}
 		public void printList() {
 			Node currNode = head;
@@ -88,9 +71,11 @@ public class Solution {
 				s = st.nextToken();
 				int index = Integer.parseInt(st.nextToken());
 				int count = Integer.parseInt(st.nextToken());
+				Linked tempList = new Linked();
 				for(int i=0;i<count;++i) {
-					list.insertAfterNode(index++, Integer.parseInt(st.nextToken()));
+					tempList.addLastNode(Integer.parseInt(st.nextToken()));
 				}
+				Linked.linkLinked(list, index, tempList);
 			}
 			System.out.print("#"+t+" ");
 			list.printList();
