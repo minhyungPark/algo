@@ -1,32 +1,34 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main11728 {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int[] narr = new int[N];
-		int[] marr = new int[M];
-		int[] arr = new int[N+M];
+	public static void main(String[] args) throws IOException {
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(bf.readLine());
 		
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		
+		int[] arr= new int[N+M];
+		
+		st = new StringTokenizer(bf.readLine());
 		for(int i=0;i<N;++i) {
-			narr[i] = sc.nextInt();
+			arr[i]=Integer.parseInt(st.nextToken());
 		}
+		st = new StringTokenizer(bf.readLine());
 		for(int i=0;i<M;++i) {
-			marr[i] = sc.nextInt();
-		}
-		for(int i=0;i<N+M;++i) {
-			if(i<N)arr[i] = narr[i];
-			else arr[i] = marr[i-N];
+			arr[i+N] = Integer.parseInt(st.nextToken());
 		}
 		Arrays.sort(arr);
+		StringBuilder sb = new StringBuilder();
 		for(int i=0;i<N+M;++i) {
-			System.out.print(arr[i]+" ");
+			sb.append(arr[i]);
+			sb.append(' ');
 		}
+		System.out.println(sb.toString());
 	}
 }
