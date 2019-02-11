@@ -2,16 +2,15 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Solution {
 
 	public static void main(String[] args) throws IOException {
-
 		System.setIn(new FileInputStream("input.txt"));
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(bf.readLine());
+		StringBuilder outputString = new StringBuilder();
 		for(int t=1;t<=T;++t) {
 			StringTokenizer st = new StringTokenizer(bf.readLine());
 			int N = Integer.parseInt(st.nextToken());
@@ -43,15 +42,29 @@ public class Solution {
 				for(int n=0;n<num.length;++n) {
 					if(s.equals(num[n])) {
 						result[count++] = n;
-						System.out.println(n);
 					}
 				}
 			}
-			System.out.println(Arrays.toString(result));
-			
-			
+			int oddSum=0;
+			int evenSum=0;
+			int parityBit=result[result.length-1];
+			int totalSum=0;;
+			for(int i=0;i<result.length-1;++i) {
+				if(i%2==0) {
+					oddSum+=result[i];
+				}else {
+					evenSum+=result[i];
+				}
+			}
+			totalSum = oddSum*3 + evenSum + parityBit;
+			if(totalSum%10==0) {
+				int temp = totalSum - 2*(oddSum);
+				outputString.append("#"+t+" "+temp);
+			}else {
+				outputString.append("#"+t+" 0");
+			}
+			outputString.append("\n");
 		}
-		
+		System.out.println(outputString.toString());
 	}
-
 }
