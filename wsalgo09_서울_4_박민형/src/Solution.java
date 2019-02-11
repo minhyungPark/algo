@@ -27,7 +27,6 @@ public class Solution {
 					c=s.toCharArray();
 				}
 			}
-//			System.out.println(String.copyValueOf(c));
 			int key=0;
 			for(int i=c.length-1;i>=0;--i) {
 				if(c[i]=='1') {
