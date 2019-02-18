@@ -27,6 +27,7 @@ public class Solution1247 {
     	System.setIn(new FileInputStream("input1247.txt"));
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(bf.readLine());
+        StringBuilder sb = new StringBuilder();
         for(int t=1;t<=T;++t) {
             N = Integer.parseInt(bf.readLine());
             check = new boolean[N];
@@ -42,13 +43,15 @@ public class Solution1247 {
             path[N+1] = home;
             minValue = Integer.MAX_VALUE;
             permutation(0);
-            System.out.println("#"+t+" "+minValue);
+            sb.append("#").append(t).append(" ").append(minValue).append("\n");
+//            System.out.println("#"+t+" "+minValue);
         }
+        System.out.print(sb.toString().trim());
     }
  
     private static void permutation(int index) {
-            if(index == N) {
-                int temp =0;
+    	if(index == N) {
+            int temp =0;
             for(int i=0;i<path.length-1;++i) {
                 temp += Math.abs(path[i].x-path[i+1].x)+Math.abs(path[i].y-path[i+1].y);
             }
