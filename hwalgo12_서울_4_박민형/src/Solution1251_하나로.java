@@ -12,21 +12,17 @@ public class Solution1251_하나로 {
 		
 		int from;
 		int to;
-		double weight;
-		public Node(int from, int to, double weight) {
+		long weight;
+		public Node(int from, int to, long weight) {
 			this.from = from;
 			this.to = to;
 			this.weight = weight;
 		}
 		@Override
 		public int compareTo(Node o) {
-			// TODO Auto-generated method stub
 			return this.weight>=o.weight?1:-1;
 		}
-		
 	}
-	
-	
 	static int N;
 	static Node[] list;
 	static int[] parents;
@@ -53,10 +49,7 @@ public class Solution1251_하나로 {
 				for(int j=i+1;j<N;++j) {
 					long x = arr[i][0] - arr[j][0];
 					long y = arr[i][1] - arr[j][1];
-					double temp = ((x*x*tax)+(y*y*tax));
-//					long temp = ((x*x)+(y*y));
-//					long temp = (Math.pow(x, 2)+Math.pow(y, 2));
-//					System.out.println(temp);
+					long temp = ((x*x)+(y*y));
 					list[index++] = new Node(i, j, temp);
 				}
 			}
@@ -70,9 +63,7 @@ public class Solution1251_하나로 {
 				}
 				++i;
 			}
-			
-			
-			System.out.printf("#%d %.0f\n",t,result);
+			System.out.printf("#%d %.0f\n",t,result*tax);
 		}
 
 	}
