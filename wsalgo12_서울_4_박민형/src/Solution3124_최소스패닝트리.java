@@ -32,7 +32,7 @@ public class Solution3124_최소스패닝트리 {
 		int T = Integer.parseInt(bf.readLine());
 		
 		for(int t=1;t<=T;++t) {
-			int result = 0;
+			long result = 0;
 			StringTokenizer st = new StringTokenizer(bf.readLine());
 			N = Integer.parseInt(st.nextToken());
 			E = Integer.parseInt(st.nextToken());
