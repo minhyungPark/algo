@@ -7,7 +7,7 @@ public class Solution1213_string {
 
 	public static void main(String[] args) throws IOException {
 
-		System.setIn(new FileInputStream("test_input.txt"));
+//		System.setIn(new FileInputStream("test_input.txt"));
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		
 		for(int t=1;t<=10;++t) {
