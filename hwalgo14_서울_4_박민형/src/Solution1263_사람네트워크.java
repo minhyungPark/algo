@@ -14,50 +14,46 @@ public class Solution1263_사람네트워크 {
 			StringTokenizer st = new StringTokenizer(bf.readLine());
 			int N = Integer.parseInt(st.nextToken());
 			int[][] arr = new int[N][N];
-			int[][] distance = new int[N][N];
 
 			for(int i=0;i<N;++i) {
 				for(int j=0;j<N;++j) {
 					arr[i][j] = Integer.parseInt(st.nextToken());
-					distance[i][j] = 99999;
 				}
 			}
+			int[] distance = null;
+			boolean[] visited = null;
+			int result = Integer.MAX_VALUE;
 			for(int n=0;n<N;++n) {
-				boolean[] visited = new boolean[N];
-				distance[n][n] = 0;
+				visited = new boolean[N];
+				distance = new int[N];
+				for(int i=0;i<N;++i) {
+					distance[i] = 99999;
+				}
+				distance[n] = 0;
 				for(int j=0;j<N;++j) {
 					int min = Integer.MAX_VALUE;
 					int key=0;
 					for(int i=0;i<N;++i) {
-						if(!visited[i]&&distance[n][i]<min) {
-							min = distance[n][i];
+						if(!visited[i]&&distance[i]<min) {
+							min = distance[i];
 							key = i;
 						}
 					}
 					visited[key] = true;
 					
 					for(int i=0;i<N;++i) {
-						if(!visited[i]&&arr[key][i]!=0&&distance[n][i]>arr[key][i]+distance[n][key]) {
-							distance[n][i] = arr[key][i]+distance[n][key];
+						if(!visited[i]&&arr[key][i]!=0&&distance[i]>1+distance[key]) {
+							distance[i] = 1+distance[key];
 						}
 					}
 				}
-				
-				
-			}
-			int[] result = new int[N];
-			for(int i=0;i<N;++i) {
-				int sum=0;
-				for(int j=0;j<N;++j) {
-					sum+=distance[i][j];
+				int sum=0; 
+				for(int i=0;i<N;++i) {
+					sum += distance[i];
 				}
-				result[i] = sum;
+				if(result>sum)result = sum;
 			}
-			int min = Integer.MAX_VALUE;
-			for(int i=0;i<N;++i) {
-				if(result[i]<min)min=result[i];
-			}
-			System.out.println("#"+t+" "+min);
+			System.out.println("#"+t+" "+result);
 		}
 	}
 

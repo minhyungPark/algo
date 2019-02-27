@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -11,7 +12,6 @@ public class Solution1263_사람네트워크2 {
 		int vertex,distance;
 
 		public Node(int vertex, int distance) {
-			super();
 			this.vertex = vertex;
 			this.distance = distance;
 		}
@@ -20,7 +20,6 @@ public class Solution1263_사람네트워크2 {
 		public int compareTo(Node o) {
 			return this.distance-o.distance;
 		}
-		
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -31,43 +30,42 @@ public class Solution1263_사람네트워크2 {
 			StringTokenizer st = new StringTokenizer(bf.readLine());
 			int N = Integer.parseInt(st.nextToken());
 			int[][] arr = new int[N][N];
-			int[][] distance = new int[N][N];
 
 			for(int i=0;i<N;++i) {
 				for(int j=0;j<N;++j) {
 					arr[i][j] = Integer.parseInt(st.nextToken());
-					distance[i][j] = 99999;
 				}
 			}
+			int min = Integer.MAX_VALUE;
+			boolean[] visited = null;
+			int[] distance = null;
 			for(int n=0;n<N;++n) {
-				boolean[] visited = new boolean[N];
+				visited = new boolean[N];
+				distance = new int[N];
+				for(int i=0;i<N;++i) {
+					distance[i] = 99999;
+				}
 				PriorityQueue<Node> q = new PriorityQueue<Node>();
-				distance[n][n] = 0;
+				distance[n] = 0;
 				q.offer(new Node(n,0));
 				while(!q.isEmpty()) {
 					Node temp = q.poll();
+					
+					if(visited[temp.vertex])continue;
 					visited[temp.vertex] = true;
 					
 					for(int i=0;i<N;++i) {
-						if(!visited[i]&&arr[temp.vertex][i]!=0&&distance[n][i]>distance[n][temp.vertex]+1) {
-							distance[n][i] = distance[n][temp.vertex]+1;
-							q.offer(new Node(i,distance[n][temp.vertex]+1));
+						if(!visited[i]&&arr[temp.vertex][i]!=0&&distance[i]>distance[temp.vertex]+1) {
+							distance[i] = distance[temp.vertex]+1;
+							q.offer(new Node(i,distance[temp.vertex]+1));
 						}
 					}
-					
 				}
-			}
-			int[] result = new int[N];
-			for(int i=0;i<N;++i) {
 				int sum=0;
 				for(int j=0;j<N;++j) {
-					sum+=distance[i][j];
+					sum+=distance[j];
 				}
-				result[i] = sum;
-			}
-			int min = Integer.MAX_VALUE;
-			for(int i=0;i<N;++i) {
-				if(result[i]<min)min=result[i];
+				if(sum<min)min=sum;
 			}
 			System.out.println("#"+t+" "+min);
 		}
