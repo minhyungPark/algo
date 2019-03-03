@@ -78,7 +78,7 @@ public class Main2638 {
 							list1.add(new Node(i,j));
 //							map[i][j]=-1;
 							int cnt=0;
-							while(blank[cnt]!=null) {
+							while(cnt<2&&blank[cnt]!=null) {
 								list.add(blank[cnt++]);
 							}
 						}

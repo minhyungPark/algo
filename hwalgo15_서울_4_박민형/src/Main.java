@@ -29,26 +29,29 @@ public class Main {
 			int max = Integer.MIN_VALUE;
 			int sum = 0;
 			int key=0;
+			// 최대의 개수를 만족하는 열 찾기
 			for(int j=0;j<10271;++j) {
 				sum=0;
 				for(int i=0;i<N;++i) {
-					if(!visited[i]) {
+					if(!visited[i]) {	// 아직 담기지 않은 물건만 체크
 						sum += refri[i][j];
 					}
 				}
 				if(sum!=0&&max<sum) {
-					max = sum;
-					key = j;
+					max = sum;	// max 갱신
+					key = j;	// 해당 열 저장
 				}
 			}
+			//	물건 담기
 			for(int i=0;i<N;++i) {
-				if(refri[i][key]==1)visited[i]=true;
+				if(!visited[i]&&refri[i][key]==1)visited[i]=true;
 			}
-			result++;
+			result++;// 냉장고 수 +1
 			flag = 0;
 			for(int i=0;i<N;++i) {
 				if(visited[i])flag++;
 			}
+			// 다 담겼으면 탈출
 		}while(flag!=N);
 		System.out.println(result);
 		
