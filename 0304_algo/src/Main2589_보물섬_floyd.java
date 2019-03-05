@@ -41,7 +41,7 @@ public class Main2589_보물섬_floyd {
 				if(i!=j&&adjMatrix[i][j]==0)adjMatrix[i][j] = 99999999;
 			}
 		}
-		
+		System.out.println();
 		for(int k=0;k<size;++k) {
 			for(int i=0;i<size;++i) {
 				if(i==k)continue;
