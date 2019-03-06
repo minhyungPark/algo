@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Main1194_달이차오른다 {
+public class Main1194_달이차오른다2 {
 	
 	static int N,M;
 	static char[][] map;
@@ -34,14 +34,13 @@ public class Main1194_달이차오른다 {
 				}
 			}
 		}
-		visited = new boolean[100][N][M];
+		visited = new boolean[129][N][M];
 		int result = bfs(start[0],start[1]);
 		System.out.println(result);
 	}
 	private static int bfs(int x, int y) {
 		Queue<int[]> que = new LinkedList<int[]>();
-		int[] t = {x,y,0,0,0,0,0,0,0,0};
-//		System.out.println(t.length);
+		int[] t = {x,y,0,0,0};
 		que.offer(t);
 		visited[0][x][y] = true;
 		while(!que.isEmpty()) {
@@ -49,50 +48,29 @@ public class Main1194_달이차오른다 {
 			for(int i=0;i<4;++i) {
 				int nx = c[0]+dx[i];
 				int ny = c[1]+dy[i];
+				int f = c[4];
 				if(nx<0||ny<0||nx>=N||ny>=M)continue;
-				if(!visited[c[9]][nx][ny]) {
+				if(!visited[f][nx][ny]) {
 					if(map[nx][ny]=='.'||map[nx][ny]=='0') {
-						int[] temp = {nx,ny,c[2]+1,c[3],c[4],c[5],c[6],c[7],c[8],c[9]};
+						int[] temp = {nx,ny,c[2]+1,c[3],f};
 						que.offer(temp);
-//						visited[c[9]][nx][ny] = true;
+						visited[f][nx][ny] = true;
 					}else if(map[nx][ny]=='a'||map[nx][ny]=='b'||map[nx][ny]=='c'||
 							map[nx][ny]=='d'||map[nx][ny]=='e'||map[nx][ny]=='f') {
-						key[(map[nx][ny]-'a')] = true;
-						if(c[(map[nx][ny]-'a')+3]==1) {
-//							System.out.println(map[nx][ny]);
-//							System.out.println(((map[nx][ny]-'a')+3));
-							int[] temp = {nx,ny,c[2]+1,c[3],c[4],c[5],c[6],c[7],c[8],c[9]};
-							que.offer(temp);
-							visited[c[9]][nx][ny] = true;
-						}else {
-							/*System.out.println(map[nx][ny]);
-							if(map[nx][ny]=='c') {
-								System.out.println('c');
-							}*/
-//							System.out.println(((map[nx][ny]-'a')+3));
-							c[(map[nx][ny]-'a')+3]++;
-//							for (boolean[] b : visited[c[9]]) {
-//								for (boolean j : b) {
-//									if(j)System.out.print("1 ");
-//									else System.out.print("0 ");
-//								}
-//								System.out.println();
-//							}
-							c[9]++;
-							int[] temp = {nx,ny,c[2]+1,c[3],c[4],c[5],c[6],c[7],c[8],c[9]};
-//							System.out.println(c[9]);
-							que.offer(temp);
-							c[(map[nx][ny]-'a')+3]--;
-							c[9]--;
-							visited[c[9]][nx][ny] = true;
-						}
+						int kk = c[3];
+						kk = kk|1<<((map[nx][ny]-'a')+1);
+						kk = kk|1<<((map[nx][ny]-'a')+1);
+						int[] temp = {nx,ny,c[2]+1,kk,kk};
+						que.offer(temp);
+						visited[f][nx][ny] = true;
 					}else if(map[nx][ny]=='A'||map[nx][ny]=='B'||map[nx][ny]=='C'||
 							map[nx][ny]=='D'||map[nx][ny]=='E'||map[nx][ny]=='F') {
-//						System.out.println(((map[nx][ny])));
-						if(c[(map[nx][ny]-'A')+3]==0)continue;
-						int[] temp = {nx,ny,c[2]+1,c[3],c[4],c[5],c[6],c[7],c[8],c[9]};
+						int kk = c[3];
+						kk = kk&1<<((map[nx][ny]-'a')+1);
+						if(kk==0)continue;
+						int[] temp = {nx,ny,c[2]+1,c[3],c[4]};
 						que.offer(temp);
-						visited[c[9]][nx][ny] = true;
+						visited[f][nx][ny] = true;
 					}else if(map[nx][ny]=='1') {
 						return c[2]+1;
 					}
