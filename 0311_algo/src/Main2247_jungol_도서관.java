@@ -19,8 +19,7 @@ public class Main2247_jungol_도서관 {
 				return o1[0]-o2[0];
 			}
 		});
-		int max1 = 0;
-		int max2 = 0;
+		int max1=0,max2=0;
 		int[] temp = person[0];
 		for(int i=1;i<N;++i) {
 			if(person[i][0]<=temp[1]) {
@@ -41,10 +40,6 @@ public class Main2247_jungol_도서관 {
 				if(person[i][1]>temp[1])temp = person[i];
 			}
 		}
-		if(max1==2168)max1 = 2169;
-		if(max1==15294)max1 = 15296;
-		if(max1==125271)max1 = 125385;
-		if(max1==1030133)max1 = 1030241;
 		System.out.println(max1+" "+max2);
 	}
 

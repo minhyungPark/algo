@@ -31,17 +31,17 @@ public class Main16985_maaaze {
 					map[k][i][j] = sc.nextInt();
 				}
 			}
-		}
-		
+		} // 입력 끝
 		
 		result = Integer.MAX_VALUE;
-		roCnt = new int[5];
-		pile = new int[5];
+		roCnt = new int[5];	// 돌리는 횟수 결정해주는 배열
+		pile = new int[5];	// 쌓는 순서를 결정해주는 배열
 		visited = new boolean[5];
 		dfs(0);
-		if(result == Integer.MAX_VALUE) result = -1;
+		if(result == Integer.MAX_VALUE) result = -1;	// 갈 수 없는 경우
 		System.out.println(result);
 	}
+	// 회전의 모든 경우를 찾는 method
 	private static void dfs(int index) {
 		if(index==5) {
 			int[][][] temp = new int[5][5][5];
@@ -61,8 +61,10 @@ public class Main16985_maaaze {
 		}
 		
 	}
+	// 쌓는 순서를 결정해주는 함수 
 	private static void permutation(int[][][] arr,int depth) {
 		if(depth==5) {
+			// 원래 입력받은 배열의 경우에는 바꾸지 않고 사용하기 위해 임시배열을 만들어 복사
 			int[][][] temp = new int[5][5][5];
 			for(int i=0;i<5;++i) {
 				clone(arr[i],temp[pile[i]]);
@@ -81,11 +83,9 @@ public class Main16985_maaaze {
 				permutation(arr,depth+1);
 				visited[i] = false;
 			}
-			
 		}
-		
-		
 	}
+	// bfs
 	private static int bfs(int[][][] temp) {
 		if(temp[0][0][0]==0)return -1;
 		Queue<Node> que = new LinkedList<Node>();
@@ -106,6 +106,8 @@ public class Main16985_maaaze {
 		if(temp[4][4][4]==0||temp[4][4][4]==1)return -1;
 		return temp[4][4][4];
 	}
+	
+	// 판을 돌리는 method
 	private static void rotate(int[][] arr,int N) {
 		for(int n=0;n<N;++n) {
 			for(int i=1;i<=2;++i) {
@@ -123,9 +125,8 @@ public class Main16985_maaaze {
 				arr[i][4] = temp;
 			}
 		}
-	
 	}
-
+	// 배열 복사 method
 	private static void clone(int[][] arr, int[][] target) {
 
 		for (int i = 0; i < 5; ++i) {

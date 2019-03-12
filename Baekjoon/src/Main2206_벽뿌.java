@@ -60,7 +60,6 @@ public class Main2206_벽뿌 {
 				}
 			}
 		}
-		
 		return -1;
 	}
 

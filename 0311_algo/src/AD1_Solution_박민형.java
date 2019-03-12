@@ -11,18 +11,19 @@ public class AD1_Solution_박민형 {
 	static int[] dy = {1,0};
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
-		int T =sc.nextInt();
-		for(int t=1;t<=T;++t) {
-			N =sc.nextInt();
-			map = new int[N][N];
-			for(int i=0;i<N;++i) {
-				for(int j=0;j<N;++j) {
-					map[i][j] =sc.nextInt();
-				}
+//		int T =sc.nextInt();
+		N =sc.nextInt();
+		map = new int[N][N];
+		for(int i=0;i<N;++i) {
+			for(int j=0;j<N;++j) {
+				map[i][j] =sc.nextInt();
 			}
-			int result = bfs();
-			System.out.println("#"+t+" "+result);
 		}
+		int result = bfs();
+		System.out.println(result);
+//		for(int t=1;t<=T;++t) {
+//			System.out.println("#"+t+" "+result);
+//		}
 	}
 
 	private static int bfs() {
@@ -33,14 +34,15 @@ public class AD1_Solution_박민형 {
 			int[] temp = {0,1,0};
 			que.add(temp);
 		}
-		if(map[1][0]==0) {
-			int[] temp = {1,0,1};
-			que.add(temp);
-		}
+//		if(map[1][0]==0) {
+//			int[] temp = {1,0,1};
+//			que.add(temp);
+//		}
 		while(!que.isEmpty()) {
 			int[] c= que.poll();
 			if(c[0]==N-1&&c[1]==N-1) {
-				if(c[2]!=2)cnt++;
+//				if(c[2]!=2)
+					cnt++;
 				continue;
 			}
 			if(c[2]!=2) {
