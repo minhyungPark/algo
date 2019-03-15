@@ -32,10 +32,6 @@ public class Main14889_스타트와링크 {
 					a=a+map[number[i]][number[j]];
 				}
 			}
-			for (int is : number) {
-				System.out.print(is+" ");
-			}
-			System.out.println();
 			int[] temp= new int[N/2];
 			int cnt = 0;
 			for(int i=0;i<N;++i) {
