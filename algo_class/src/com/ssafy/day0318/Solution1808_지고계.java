@@ -36,15 +36,15 @@ public class Solution1808_지고계 {
 	private static void dfs(int index, int flag,int preN,int total) {
 
 		if(preN*total==result) {
-			// 결과값이 나올 수 있으므로 '=' 누른 답을 저장해준다.
+			// 결과값이 나올 수 있으므로 '=' 누른 횟수를 저장해준다.
 			if(index+1<ans)ans = index+1;
 			return;
 		}
 		
-		
 		if(total>result)return;
 		if(index>=ans)return;
 		
+		// 숫자를 누르는 경우
 		for(int i=0;i<10;++i) {
 			if(number[i]) {
 				if(flag==-1) {
@@ -64,11 +64,10 @@ public class Solution1808_지고계 {
 			}
 		}
 		
+		// 곱하기는 누르는 경우
 		if((flag==2||flag==0)&&preN!=1) {
 			if(preN*total<=result&&result%(preN*total)==0)dfs(index+1,1,0,total*preN);
 		}
-		
-		
 	}
 
 }
