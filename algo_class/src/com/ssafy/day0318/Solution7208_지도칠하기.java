@@ -1,4 +1,4 @@
-package com.ssafy.d4;
+package com.ssafy.day0318;
 
 import java.util.Scanner;
 

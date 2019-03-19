@@ -1,4 +1,4 @@
-package com.ssafy.d4;
+package com.ssafy.day0318;
 
 import java.util.Scanner;
 
@@ -36,6 +36,7 @@ public class Solution1808_지고계 {
 	private static void dfs(int index, int flag,int preN,int total) {
 
 		if(preN*total==result) {
+			// 결과값이 나올 수 있으므로 '=' 누른 답을 저장해준다.
 			if(index+1<ans)ans = index+1;
 			return;
 		}

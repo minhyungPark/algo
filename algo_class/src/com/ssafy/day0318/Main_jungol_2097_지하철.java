@@ -1,4 +1,4 @@
-package com.ssafy.d4;
+package com.ssafy.day0318;
 
 import java.util.Scanner;
 
@@ -43,7 +43,6 @@ public class Main_jungol_2097_지하철 {
 	private static void dfs(int index,int pre, int target, String st) {
 		if(target==0&&pre==M-1) {
 			result = st;
-			System.out.println(st);
 			return;
 		}
 		
