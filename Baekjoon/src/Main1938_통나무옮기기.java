@@ -43,7 +43,7 @@ public class Main1938_통나무옮기기 {
 		start[2] = a;
 		Queue<int[][]> que = new LinkedList<>();
 		for(int i=0;i<3;++i) {
-			checked[d][start[i][0]][start[i][1]]=true;
+			checked[d][start[0][i]][start[1][0]]=true;
 		}
 		que.add(start);
 		while(!que.isEmpty()) {
