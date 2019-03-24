@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -33,50 +34,46 @@ public class Main1260 {
 			adjList[tempa].add(tempb);
 			adjList[tempb].add(tempa);
 		}
-		visited[start] = true;
-		numbers[0] = start;
-		dfs(1,start);
-		
-		visited = new boolean[N+1];
-		visited[start] = true;
-		Queue<Integer> q = new LinkedList<Integer>();
-		q.offer(start);
-		int cnt=1;
-		while(!q.isEmpty()) {
-			int num = q.poll();
-			for(int i=0;i<adjList[num].size();++i) {
-				int temp= adjList[num].get(i);
-				if(!visited[temp]) {
-					visited[temp] = true;
-					numbers[cnt++] =temp; 
-					q.offer(temp);
-				}
-			}
-		}
 		for(int i=0;i<N;++i) {
-			sb.append(numbers[i]).append(" ");
+			Collections.sort(adjList[i]);
 		}
+		visited[start] = true;
+		sb.append(start).append(" ");
+		dfs(0,start);
 		sb.append("\n");
-		System.out.print(sb.toString().trim());
+		bfs(start);
+		System.out.println(sb.toString().trim());
+		
 	}
-	private static void dfs(int depth, int index) {
-		if(depth==N) {
-			for(int i=0;i<N;++i) {
-				sb.append(numbers[i]).append(" ");
-			}
-			sb.append("\n");
-			return;
-		}
+	private static void dfs(int depth,int index) {
 		
 		for(int i=0;i<adjList[index].size();++i) {
-			int temp= adjList[index].get(i);
-			if(!visited[temp]) {
-				visited[temp] = true;
-				numbers[depth] =temp; 
-				dfs(depth+1,temp);
+			int temp = adjList[index].get(i);
+			if(visited[temp])continue;
+			visited[temp] =true;
+			sb.append(temp).append(" ");
+			dfs(depth+1,temp);
+		}
+	}
+	
+	private static void bfs(int start) {
+		Queue<Integer> que = new LinkedList<Integer>();
+		visited = new boolean[N+1];
+		visited[start] = true;
+		que.add(start);
+		sb.append(start).append(" ");
+		while(!que.isEmpty()) {
+			int c = que.poll();
+			for(int i=0;i<adjList[c].size();++i) {
+				int temp = adjList[c].get(i);
+				if(visited[temp])continue;
+				visited[temp]=true;
+				sb.append(temp).append(" ");
+				que.add(temp);
 			}
 		}
-		
+		return;
 	}
+	
 
 }

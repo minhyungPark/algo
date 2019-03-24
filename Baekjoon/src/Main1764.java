@@ -3,12 +3,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main1764 {
 
 	static int count;
-	static String[] list1;
 	static String[] list2;
 	static ArrayList<String> list;
 	
@@ -18,43 +18,26 @@ public class Main1764 {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 		StringBuilder sb = new StringBuilder();
-		list1 = new String[N];
 		list2 = new String[M];
 		list = new ArrayList<String>();
+		HashMap<String, String> map = new HashMap<String, String>();
 		for(int i=0;i<N;++i) {
-			list1[i] = bf.readLine();
+			String temp = bf.readLine();
+			map.put(temp, temp);
 		}
 		for(int i=0;i<M;++i) {
 			list2[i] = bf.readLine();
 		}
-		Arrays.sort(list1);
 		Arrays.sort(list2);
-
-		for(int i=0;i<N;++i) {
-			binarySearch(list1[i],0,M);
+		for(int i=0;i<M;++i) {
+			if(map.containsKey(list2[i])) {
+				list.add(list2[i]);
+			}
 		}
 		sb.append(list.size()).append("\n");
 		for(int i=0;i<list.size();++i) {
 			sb.append(list.get(i)).append("\n");
 		}
 		System.out.println(sb.toString().trim());
-		
 	}
-
-	private static void binarySearch(String string, int start, int end) {
-		if(start>end) {
-			return;
-		}
-		
-		int mid = (start+end)/2;
-		if(list2[mid].equals(string)) {
-			list.add(string);
-		}else if(string.compareTo(list2[mid])>0) {
-			binarySearch(string,mid+1,end);
-		}else if(string.compareTo(list2[mid])<0) {
-			binarySearch(string,start,mid-1);
-		}
-		
-	}
-
 }

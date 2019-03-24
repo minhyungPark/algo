@@ -36,6 +36,11 @@ public class Main1938_통나무옮기기 {
 				}
 			}
 		}
+		int result = bfs(start);
+		System.out.println(result);
+	}
+	private static int bfs(int[][] start) {
+		
 		int ans = 0;
 		int d = 0;
 		if(start[0][0]!=start[0][1])d=1;
@@ -48,20 +53,8 @@ public class Main1938_통나무옮기기 {
 		que.add(start);
 		while(!que.isEmpty()) {
 			int[][] cu = que.poll();
-			int[][] pr = new int[N][N];
 			int dir = cu[2][0];
 			int cnt = cu[2][1];
-			for(int i=0;i<3;++i) {
-				pr[cu[0][i]][cu[1][i]]=1;
-			}
-			System.out.println(cnt);
-			for(int i=0;i<N;++i) {
-				for(int j=0;j<N;++j) {
-					System.out.print(pr[i][j]+" ");
-				}
-				System.out.println();
-			}
-			System.out.println();
 			boolean flag = true;
 			for(int i=0;i<3;++i) {
 				if(cu[0][i]!=end[0][i]||cu[1][i]!=end[1][i]) {
@@ -70,8 +63,7 @@ public class Main1938_통나무옮기기 {
 				}
 			}
 			if(flag) {
-				ans = cnt;
-				break;
+				return cnt;
 			}
 			//상,하,좌,우
 			for(int dd=0;dd<4;++dd) {
@@ -160,10 +152,7 @@ public class Main1938_통나무옮기기 {
 			int[][] temp= {nx,ny,{nd,cnt+1}};
 			que.add(temp);
 		}
-		System.out.println(ans);
-		
-		
-		
+		return 0;
 	}
 
 }
