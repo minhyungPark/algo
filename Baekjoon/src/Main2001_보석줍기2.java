@@ -33,6 +33,7 @@ public class Main2001_보석줍기2 {
 				bosuk[i]=cnt++;
 			}
 		}
+		// 다리의 정보를 저장해준다.
 		arr = new int[N+1][N+1];
 		for(int i=0;i<M;++i) {
 			st = new StringTokenizer(bf.readLine());
@@ -42,6 +43,7 @@ public class Main2001_보석줍기2 {
 			arr[a][b] = k;
 			arr[b][a] = k;
 		}
+		// BFS 시작
 		int result = bfs();
 		System.out.println(result);
 		
@@ -49,6 +51,7 @@ public class Main2001_보석줍기2 {
 	private static int bfs() {
 		boolean[][] visited = new boolean[(int) Math.pow(2,K)][N+1];
 		Queue<int[]> que = new LinkedList<>();
+		// 시작점, 보석을 가지고 있는 상태, 보석 개수
 		int[] t = {1,0,0};
 		que.offer(t);
 		visited[0][1]=true;
@@ -58,6 +61,7 @@ public class Main2001_보석줍기2 {
 			int w = c[0];
 			int f = c[1];
 			int k = c[2];
+			// 다시 1번 섬으로 돌아왔을 때
 			if(k!=0&&w==1) {
 				if(ans<k)ans=k;
 				if(isBosuk[w]&&(f&1)==0) {
@@ -66,7 +70,8 @@ public class Main2001_보석줍기2 {
 			}
 			
 			for(int i=1;i<=N;++i) {
-				if(arr[w][i]==0)continue;
+				if(arr[w][i]==0)continue;	// 연결되어 있지 않는 다리이므로...
+				// 보석이 있을때 보석을 가져가보는 시도
 				if(isBosuk[i]&&arr[w][i]>=k+1) {
 					int flag = 1;
 					flag = flag<<bosuk[i];
@@ -76,6 +81,7 @@ public class Main2001_보석줍기2 {
 						que.offer(temp);
 					}
 				}
+				// 그냥 지나가는 시도
 				if(arr[w][i]>=k&&!visited[f][i]) {
 					visited[f][i] = true;
 					int[] temp = {i,f,k};
