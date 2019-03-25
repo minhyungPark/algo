@@ -123,20 +123,12 @@ public class Main1938_통나무옮기기 {
 			int[] nx = new int[3];
 			int[] ny = new int[3];
 			if(nd==0) {
-				nx[0]=x;
-				nx[1]=x;
-				nx[2]=x;
-				ny[0]=y-1;
-				ny[1]=y;
-				ny[2]=y+1;
+				nx[0]=x;	nx[1]=x;	nx[2]=x;
+				ny[0]=y-1;	ny[1]=y;	ny[2]=y+1;
 			}
 			else if(nd==1) {
-				nx[0]=x-1;
-				nx[1]=x;
-				nx[2]=x+1;
-				ny[0]=y;
-				ny[1]=y;
-				ny[2]=y;
+				nx[0]=x-1;	nx[1]=x;	nx[2]=x+1;
+				ny[0]=y;	ny[1]=y;	ny[2]=y;
 			}
 			f=false;
 			for(int i=0;i<3;++i) {

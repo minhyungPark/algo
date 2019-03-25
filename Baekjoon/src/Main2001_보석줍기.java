@@ -34,7 +34,7 @@ public class Main2001_보석줍기 {
 		result = 0;
 		total = 0;
 		isBosuk = new boolean[N+1];
-		visited = new boolean[N+1][N+1];
+		
 		for(int i=0;i<K;++i) {
 			isBosuk[Integer.parseInt(bf.readLine())] = true;
 		}
@@ -57,6 +57,7 @@ public class Main2001_보석줍기 {
 		for(int i=0;i<list[1].size();++i) {
 			if(list[1].get(i).amount>max)max=list[1].get(i).amount;
 		}
+		visited = new boolean[max+1][N+1];
 		dfs(0,1,0);
 		System.out.println(result);
 		System.out.println(jae);
@@ -71,7 +72,7 @@ public class Main2001_보석줍기 {
 		}
 		
 		if(cnt>max)return;
-		if(index>M)return;
+//		if(index>M)return;
 		if(!isBosuk[1]&&result==max)return;
 		if(isBosuk[1]&&result==max+1)return;
 		 
