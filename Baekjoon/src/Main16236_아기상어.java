@@ -9,8 +9,6 @@ public class Main16236_아기상어 {
 	static int[][] map;
 	static int[] dx = {-1,0,0,1};
 	static int[] dy = {0,-1,1,0};
-	static int[] ddx = {0,0};
-	static int[] ddy = {-1,1};
 	static int result;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -44,13 +42,15 @@ public class Main16236_아기상어 {
 			map[c[0]][c[1]]=0;
 			result+=c[2];
 			
-			/*for (int[] m : map) {
+			System.out.println(c[2]);
+			System.out.println(c[0]+" "+c[1]);
+			for (int[] m : map) {
 				for (int i : m) {
 					System.out.print(i+" ");
 				}
 				System.out.println();
 			}
-			System.out.println();*/
+			System.out.println();
 		}
 		System.out.println(result);
 		
@@ -81,39 +81,12 @@ public class Main16236_아기상어 {
 					continue;
 				}
 			}
-			/*if(c[3]>res[2]) {
-//				map[res[0]][res[1]]=0;
-				return res;
-			}*/
-			
-			/*if(c[0]==0) {
-				for(int i=0;i<2;++i) {
-					int nx = c[0]+ddx[i];
-					int ny = c[1]+ddy[i];
-					if(nx<0||ny<0||nx>=N||ny>=N)continue;
-					if(visited[nx][ny])continue;
-					if(map[nx][ny]>c[2])continue;
-					if(map[nx][ny]!=0&&map[nx][ny]<c[2]) {
-						int[] temp = {nx,ny,c[3]+1};
-						map[nx][ny] = 0;
-						return temp;
-					}
-					visited[nx][ny] = true;
-					int[] temp = {nx,ny,c[2],c[3]+1};
-					que.offer(temp);
-				}
-			}*/
 			for(int i=0;i<4;++i) {
 				int nx = c[0]+dx[i];
 				int ny = c[1]+dy[i];
 				if(nx<0||ny<0||nx>=N||ny>=N)continue;
 				if(visited[nx][ny])continue;
 				if(map[nx][ny]>c[2])continue;
-				/*if(map[nx][ny]!=0&&map[nx][ny]<c[2]) {
-					int[] temp = {nx,ny,c[3]+1};
-					map[nx][ny] = 0;
-					return temp;
-				}*/
 				visited[nx][ny] = true;
 				int[] temp = {nx,ny,c[2],c[3]+1};
 				que.offer(temp);
