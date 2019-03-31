@@ -8,23 +8,21 @@ public class Main15486_퇴사2 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(bf.readLine());
-		int[][] arr = new int[N][2];
-		for(int i=0;i<N;++i) {
+		int[] ti = new int[N+1];
+		int[] pi = new int[N+1];
+		for(int i=1;i<=N;++i) {
 			StringTokenizer st = new StringTokenizer(bf.readLine());
-			arr[i][0] = Integer.parseInt(st.nextToken());
-			arr[i][1] = Integer.parseInt(st.nextToken());
+			ti[i] = Integer.parseInt(st.nextToken());
+			pi[i] = Integer.parseInt(st.nextToken());
 		}
-		int[] dp = new int[N+51];
-		for(int i=0;i<N;++i) {
-			int day = arr[i][0];
-			int pay = arr[i][1];
-			dp[i+day] = Math.max(dp[i+day], dp[i]+pay);
+		int[] dp = new int[N+2];
+		for(int i=N;i>=0;--i) {
+			if(i+ti[i]>N+1)dp[i]=dp[i+1];
+			else {
+				dp[i]=Math.max(dp[i+ti[i]]+pi[i], dp[i+1]);
+			}
 		}
-		int max = Integer.MIN_VALUE;
-		for(int i=0;i<=N;++i) {
-			if(max<dp[i])max = dp[i];
-		}
-		System.out.println(max);
+		System.out.println(dp[0]);
 		
 	}
 
