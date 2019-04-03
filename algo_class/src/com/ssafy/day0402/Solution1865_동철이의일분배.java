@@ -24,6 +24,7 @@ public class Solution1865_동철이의일분배 {
 			dfs(0,1.0);
 			System.out.printf("#"+t+" "+"%.6f\n",result*100);
 		}
+		sc.close();
 	}
 	private static void dfs(int index, double prob) {
 		if(index==N) {
