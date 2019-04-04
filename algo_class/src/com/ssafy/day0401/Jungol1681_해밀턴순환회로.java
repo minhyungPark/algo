@@ -22,26 +22,25 @@ public class Jungol1681_해밀턴순환회로 {
 		}
 		result = Integer.MAX_VALUE;
 		visited[0]=true;
-//		int res = dfs(0,0,0);
-		dfs1(0,0,0);
-		System.out.println(result);
+		int res = dfs(0,0,0,Integer.MAX_VALUE);
+//		dfs1(0,0,0);
+//		System.out.println(result);
+		System.out.println(res);
 	}
-	private static int dfs(int index, int sum,int where) {
+	private static int dfs(int index, int sum,int where,int max) {
 		int res = Integer.MAX_VALUE;
 		if(index==N-1) {
-			if(map[where][0]==INF) return res;
-			else {
-				if(sum+map[where][0]<result)result=sum+map[where][0];
-				return sum+map[where][0];
-			}
+			return sum+map[where][0];
 		}
+		if(sum>max) return Integer.MAX_VALUE;
 		for(int i=0;i<N;++i) {
 			if(map[where][i]==INF)continue;
 			if(visited[i])continue;
 			visited[i]=true;
-			int temp = dfs(index+1,sum+map[where][i],i);
+			int temp = dfs(index+1,sum+map[where][i],i,max);
 			visited[i]=false;
 			res=res>temp?temp:res;
+			max=max<res?max:res;
 		}
 		return res;
 	}
