@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Solution1949_등산로조성 {
@@ -35,6 +37,7 @@ public class Solution1949_등산로조성 {
 		}
 		sc.close();
 	}
+
 	private static int go(int depth, int x, int y, int height,boolean broken, boolean[][] visited) {
 		int res = depth;
 		for(int i=0;i<4;++i) {
