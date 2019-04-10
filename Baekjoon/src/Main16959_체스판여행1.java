@@ -7,8 +7,6 @@ public class Main16959_체스판여행1 {
 	static int[][] map;
 	static int[] kdx = {-2,-2,2,2,-1,-1,1,1};
 	static int[] kdy = {-1,1,-1,1,-2,2,-2,2};
-	static int[] k1dx = {-4,-4,-4,-3,-3,-3,-3,-2,-2,-2,-1,-1,-1,-1,0,0,0,0,1,1,1,1,2,2,2,3,3,3,3,4,4,4};
-	static int[] k1dy = {-2,0,2,-3,-1,1,3,-4,0,4,-3,-1,1,3,-4,-2,2,4,-3,-1,1,3,-4,0,4,-3,-1,1,3,-2,0,2};
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
@@ -52,26 +50,41 @@ outer:		for(int i=0;i<N;++i) {
 			
 			boolean f1 = false;
 			boolean f2 = false;
+			boolean f3 = false;
 			for(int d=0;d<8;++d) {
 				int nx = ex[0]+kdx[d];
 				int ny = ex[1]+kdy[d];
+				if(nx<0||ny<0||nx>=N||ny>=N)continue;
 				if(nx==c[0]&&ny==c[1]) {
 					f1= true;
 					break;
-				}
-			}
-			for(int d=0;d<k1dx.length;++d) {
-				int nx = ex[0]+k1dx[d];
-				int ny = ex[1]+k1dy[d];
-				if(nx==c[0]&&ny==c[1]) {
-					f2=true;
-					break;
+				}else {
+					for(int dd=0;dd<8;++dd) {
+						int nnx = nx + kdx[dd];
+						int nny = ny + kdy[dd];
+						if(nnx<0||nny<0||nnx>=N||nny>=N)continue;
+						if(nnx==c[0]&&nny==c[1]) {
+							f2 = true;
+							break;
+						}else {
+							for(int ddd=0;ddd<8;++ddd) {
+								int nnnx = nnx +kdx[ddd];
+								int nnny = nny +kdy[ddd];
+								if(nnnx==c[0]&&nnny==c[1]) {
+									f3 = true;
+									break;
+								}
+							}
+						}
+					}
 				}
 			}
 			if(f1) {
 				dp[i][2] = Math.min(Math.min(dp[i-1][0]+2, dp[i-1][1]+2), dp[i-1][2]+1);
-			}else if(f2) {
+			}else if(!f1&&f2) {
 				dp[i][2] = Math.min(Math.min(dp[i-1][0]+3, dp[i-1][1]+3), dp[i-1][2]+2);
+			}else if(!f1&&!f2&&f3){
+				dp[i][2] = Math.min(Math.min(dp[i-1][0]+4, dp[i-1][1]+4), dp[i-1][2]+3);
 			}else {
 				dp[i][2] = 9999;
 			}
