@@ -16,7 +16,9 @@ public class ArrayStack {
 	public boolean isFull() {
 		return top+1==maxSize;
 	}
-	
+	public int size() {
+		return top+1;
+	}
 	public void push(Object temp) {
 		if(isFull()) {
 			System.out.println("포화 상태");
